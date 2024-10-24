@@ -1,5 +1,5 @@
 import 'package:dog_and_bone/customButton.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -28,9 +28,10 @@ class DogAndBone extends State<MyApp>{
   double movementSpeed = 0.25;
   int score = 0; // initial score of the game is 0
 
+  // move the dog left
   void moveLeft(){
     if((dogX - movementSpeed) < -1){
-      // do nothing
+      // do nothing as dog reached the end of the screen
     }
     else {
       setState(() {
@@ -39,14 +40,20 @@ class DogAndBone extends State<MyApp>{
     }
   }
 
+  // move the dog right
   void moveRight(){
     if((dogX + movementSpeed) > 1){
-      // do nothing
+      // do nothing as dog reached the end of the screen
     } else {
       setState(() {
         dogX += movementSpeed;
       });
     }
+  }
+
+  double boneFallPosition() {
+    // generates a random position for the bone to fall down
+    return (-4 + Random().nextInt(8))/4; // position varies from -1 to 1
   }
 
   // This widget is the root of your application.
